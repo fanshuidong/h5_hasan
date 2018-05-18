@@ -7,28 +7,35 @@
     <meta name="format-detection" content="telephone=no,email=no">
     <title>商品详情</title>
     <script type="text/javascript" src="js/rem.js"></script>
+    <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="lib/swiper/swiper-4.2.6.min.js"></script>
+    <script type="text/javascript" src="js/goods.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="lib/swiper/swiper-4.2.6.min.css">
 </head>
-<body>
+<body ng-app="myApp" data-ng-controller="goodsCtrl">
     <div class="proDetails">
         <div class="proBanner">
             <a href="javascript:;"><img src="images/return.png"/> </a>
-            <img src="images/banner.png"/>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" data-ng-repeat="item in goods.resources['1001']"><img src="{{item.url}}"/></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
         </div>
         <div class="proContent">
             <div class="part1">
-                <h3>胡萝卜</h3>
-                <p>胡萝卜胡萝卜卜胡萝卜胡萝卜胡萝卜胡萝卜胡萝卜胡萝卜胡萝卜胡萝卜胡萝卜胡萝卜胡萝卜胡萝卜胡萝卜胡萝卜胡萝卜胡萝卜胡萝卜</p>
+                <h3>{{goods.name}}</h3>
+                <p>{{goods.desc}}</p>
             </div>
-            <ul class="part2">
-                <li><span>原<em style="opacity: 0">原价</em>价：</span><span>￥10</span></li>
-                <li><span>普通会员：</span><span>￥9</span></li>
-                <li><span>高级会员：</span><span>￥1</span></li>
+            <ul class="part2" data-ng-repeat="item in goods.prices">
+                <li><span>{{item.name}}：</span><span>{{item.price}}</span></li>
             </ul>
-            <p class="part3"><span>库存85件</span><span>已售11111件</span></p>
+            <p class="part3"><span>库存{{goods.inventory}}件</span><span>已售{{goods.sold}}件</span></p>
             <div class="part4 clear">
-                <img src="images/img1.png"/>
-                <img src="images/img2.png"/>
+                <img src="{{goods.resources['1002'][0].url}}"/>
+                <img src="{{goods.resources['1010'][0].url}}"/>
             </div>
         </div>
         <div class="comments">
