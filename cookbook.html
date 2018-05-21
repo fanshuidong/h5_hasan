@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><!--PhoneX的适配，在iOS 11中采用了viewport-fit的meta标签作为适配方案-->
     <meta name="msapplication-tap-highlight" content="no"/>
     <meta name="format-detection" content="telephone=no,email=no">
     <title>菜谱</title>
-    <script type="text/javascript" src="js/rem.js"></script>
+    <script type="text/javascript" src="js/common/rem.js"></script>
     <script type="text/javascript" src="lib/angular/angular.min.js"></script>
     <script type="text/javascript" src="lib/swiper/swiper-4.2.6.min.js"></script>
     <script type="text/javascript" src="js/cookbook.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="lib/swiper/swiper-4.2.6.min.css">
 </head>
-<body ng-app="myApp" data-ng-controller="cookbookCtrl">
+<body data-ng-controller="cookbookCtrl">
     <div class="menu">
         <div class="header">
             <a href="javascript:;"><img src="images/return.png"/></a>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" data-ng-repeat="item in resources"><img src="{{item.url}}"/></div>
+                    <div class="swiper-slide" data-ng-repeat="item in resources"><img data-ng-src="{{item.url}}"/></div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -36,7 +36,7 @@
                 <ul data-ng-repeat="item in cookbook.steps">
                     <li>
                         <h3>{{item.name}}</h3>
-                        <img src="{{item2.url}}" data-ng-repeat="item2 in item.image"/>
+                        <img data-ng-src="{{item2.url}}" data-ng-repeat="item2 in item.image"/>
                         <p>{{item.content}}</p>
                     </li>
                 </ul>
@@ -44,10 +44,7 @@
             <div class="carts">
                 <h3>选择丢进购物车<span><img src="images/cart.png"/><em>2</em></span></h3>
                 <ul class="clear">
-                    <li><img src="images/img3.png"/> </li>
-                    <li><img src="images/img4.png"/> </li>
-                    <li><img src="images/img3.png"/> </li>
-                    <li><img src="images/img4.png"/> </li>
+                    <li data-ng-repeat="item in cookbook.goods"><img data-ng-src="{{item.icon.url}}"/> </li>
                 </ul>
             </div>
         </div>

@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><!--PhoneX的适配，在iOS 11中采用了viewport-fit的meta标签作为适配方案-->
     <meta name="msapplication-tap-highlight" content="no"/>
     <meta name="format-detection" content="telephone=no,email=no">
     <title>商品详情</title>
-    <script type="text/javascript" src="js/rem.js"></script>
+    <script type="text/javascript" src="js/common/rem.js"></script>
     <script type="text/javascript" src="lib/angular/angular.min.js"></script>
     <script type="text/javascript" src="lib/swiper/swiper-4.2.6.min.js"></script>
     <script type="text/javascript" src="js/goods.js"></script>
+    <script type="text/javascript" src="js/common/filter.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="lib/swiper/swiper-4.2.6.min.css">
 </head>
-<body ng-app="myApp" data-ng-controller="goodsCtrl">
+<body data-ng-controller="goodsCtrl">
     <div class="proDetails">
         <div class="proBanner">
             <a href="javascript:;"><img src="images/return.png"/> </a>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" data-ng-repeat="item in goods.resources['1001']"><img src="{{item.url}}"/></div>
+                    <div class="swiper-slide" data-ng-repeat="item in goods.resources['1001']"><img data-ng-src="{{item.url}}"/></div>
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
@@ -34,27 +35,24 @@
             </ul>
             <p class="part3"><span>库存{{goods.inventory}}件</span><span>已售{{goods.sold}}件</span></p>
             <div class="part4 clear">
-                <img src="{{goods.resources['1002'][0].url}}"/>
-                <img src="{{goods.resources['1010'][0].url}}"/>
+                <img data-ng-src="{{goods.resources['1002'][0].url}}"/>
+                <img data-ng-src="{{goods.resources['1010'][0].url}}"/>
             </div>
         </div>
         <div class="comments">
-            <p><span>商品评价（21）</span><span>查看全部<img src="images/arrow.png"/> </span></p>
-
+            <p data-ng-show="goods.evaluations.length>0">
+                <span>商品评价（{{goods.evaluations.length}}）</span><span>查看全部<img src="images/arrow.png"/> </span>
+            </p>
             <!--有评价时-->
-            <ul>
-                <li>
-                    <p class="clear"><span><img src="images/person.png"/></span><span>156****55611</span><span>2018.01.29</span></p>
-                    <p class="content">很好很好很好，仓鼠都不爱吃，很好很好很好，仓鼠都不爱吃很好很好很好，仓鼠都不爱吃很好很好很好，仓鼠都不爱吃</p>
-                </li>
-                <li>
-                    <p class="clear"><span><img src="images/person.png"/></span><span>156****55611</span><span>2018.01.29</span></p>
-                    <p class="content">很好很好很好，仓鼠都不爱吃，很好很好很好，仓鼠都不爱吃很好很好很好，仓鼠都不爱吃很好很好很好，仓鼠都不爱吃</p>
+            <ul data-ng-show="goods.evaluations.length>0">
+                <li data-ng-repeat="item in goods.evaluations | limitTo：1 ">
+                    <p class="clear"><span><img data-ng-src="{{item.avatar}}"/></span><span>{{item.mobile}}</span><span>{{item.created | timeFilter}}</span></p>
+                    <p class="content">{{item.content}}</p>
                 </li>
             </ul>
 
             <!--没有评价时-->
-            <p class="noComments" style="display: none;">暂时还没有评论</p>
+            <p class="noComments" data-ng-show="goods.evaluations.length==0">暂时还没有评论</p>
 
         </div>
 
@@ -62,8 +60,6 @@
             <p><span><img src="images/cart.png"/><em>2</em></span></p>
             <p>加入购物车</p>
         </div>
-
-
 
     </div>
 </body>
