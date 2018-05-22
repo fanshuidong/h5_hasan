@@ -17,7 +17,7 @@
 <body data-ng-controller="goodsCtrl">
     <div class="proDetails">
         <div class="proBanner">
-            <a href="javascript:;"><img src="images/return.png"/> </a>
+            <a href="hasanapp://app.hasan.web/closeAction"><img src="images/return.png"/> </a>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" data-ng-repeat="item in goods.resources['1001']"><img data-ng-src="{{item.url}}"/></div>
@@ -36,12 +36,14 @@
             <p class="part3"><span>库存{{goods.inventory}}件</span><span>已售{{goods.sold}}件</span></p>
             <div class="part4 clear">
                 <a ng-href="{{goods.resources['1002'][0].link}}"><img data-ng-src="{{goods.resources['1002'][0].url}}"/></a>
-                <a ng-href="cookbook.html#?id={{goods.resources['1010'][0].owner}}"><img data-ng-src="{{goods.resources['1010'][0].url}}"/></a>
+                <a ng-href="cookbook.html#?id={{goods.resources['1010'][0].owner}}&goodsId={{goods.id}}&token={{token}}&cartNum={{cartNum}}">
+                    <img data-ng-src="{{goods.resources['1010'][0].url}}"/>
+                </a>
             </div>
         </div>
         <div class="comments">
             <p data-ng-show="goods.evaluations.length>0">
-                <span>商品评价（{{goods.evaluations.length}}）</span><span>查看全部<img src="images/arrow.png"/> </span>
+                <span>商品评价（{{goods.evaluations.length}}）</span><span ng-click="queryEvaluations()">查看全部<img src="images/arrow.png"/> </span>
             </p>
             <!--有评价时-->
             <ul data-ng-show="goods.evaluations.length>0">
@@ -56,7 +58,7 @@
         </div>
 
         <div class="cart">
-            <p><span><img src="images/cart.png" ng-click="goCart()"/><em>2</em></span></p>
+            <p><span><img src="images/cart.png" ng-click="goCart()"/><em>{{cartNum}}</em></span></p>
             <p ng-click="addCart()">加入购物车</p>
         </div>
 

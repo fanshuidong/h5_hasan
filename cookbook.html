@@ -16,7 +16,7 @@
 <body data-ng-controller="cookbookCtrl">
     <div class="menu">
         <div class="header">
-            <a href="javascript:;"><img src="images/return.png"/></a>
+            <a href="goodsDetails.html#?id={{goodsId}}&token={{token}}&cartNum={{cartNum}}"><img src="images/return.png"/></a>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" data-ng-repeat="item in resources"><img data-ng-src="{{item.url}}"/></div>
@@ -42,9 +42,9 @@
                 </ul>
             </div>
             <div class="carts">
-                <h3>选择丢进购物车<span><img src="images/cart.png"/><em>2</em></span></h3>
+                <h3>选择丢进购物车<span><img src="images/cart.png" ng-click="goCart()"/><em>{{cartNum}}</em></span></h3>
                 <ul class="clear">
-                    <li data-ng-repeat="item in cookbook.goods"><img data-ng-src="{{item.icon.url}}"/> </li>
+                    <li data-ng-repeat="item in cookbook.goods"><img data-ng-src="{{item.icon.url}}" ng-click="addCart(item)"/> </li>
                 </ul>
             </div>
         </div>

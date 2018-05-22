@@ -1,26 +1,47 @@
 var app = angular.module('myApp', []);
-app.controller('goodsCtrl', function($scope, $location,$http) {
+app.controller('goodsCtrl', function($scope, $location,$http,$timeout) {
     var param = $location.search();
+    $scope.cartNum = param.cartNum;
+    $scope.token = param.token;
+    $scope.goodsPrice = 0;
     $http({
         method: 'POST',
         // url:"http://localhost:8089/hasan/goods/detail",
         url:"http://121.196.193.96/hasan/goods/detail",
+        headers:{'token':param.token},
         data:{id:param.id}
     }).success(function(data) {
         console.log(data);
         $scope.goods = data.attach;
+        //获取用户会员信息
+        $http({
+            method: 'POST',
+            url:"http://121.196.193.96/hasan/common/wallet",
+            headers:{'token':param.token},
+            data:{}
+        }).success(function(data) {
+            console.log(data);
+            $scope.memberId = data.attach.memberId;
+            for(var i in $scope.goods.prices){
+                if($scope.goods.prices[i].memberId == $scope.memberId){
+                    $scope.goodsPrice = $scope.goods.prices[i].price;
+                }
+            }
+        });
     });
-    var mySwiper = new Swiper('.swiper-container', {
-        pagination: {
-            el: '.swiper-pagination'
-        },
-        autoplay: {
-            delay: 1000,//1秒切换一次
-            disableOnInteraction: false
-        },
-        loop : true,
-        speed:1000
-    });
+
+    $timeout(function () {
+        var mySwiper = new Swiper('.swiper-container', {
+            pagination: {
+                el: '.swiper-pagination'
+            },
+            autoplay: {
+                disableOnInteraction: false
+            },
+            loop:true,
+            speed:1000
+        });
+    },800);
 
     $scope.goCart = function () {
         window.location.href = "hasanapp://app.hasan.web/cartListAction";
@@ -30,10 +51,15 @@ app.controller('goodsCtrl', function($scope, $location,$http) {
             goodsId:$scope.goods.id,
             goodsName:$scope.goods.name,
             goodsImg:$scope.goods.resources['1000'][0].url,
-            goodsPrice:$scope.goods.prices[0].price,
+            goodsPrice:$scope.goodsPrice,
             goodsNum:1
         };
         window.location.href = "hasanapp://app.hasan.web/addCartAction?goodsList="+JSON.stringify(goodsList);
+        $scope.cartNum = Number($scope.cartNum)+1;
+    };
+    $scope.queryEvaluations = function () {
+        window.location.href = "hasanapp://app.hasan.web/discussListAction?goodsId="+$scope.goods.id;
     }
 });
+
 // document.write("<script language='javascript' src='js/filter.js'></script>");
