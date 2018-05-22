@@ -1,17 +1,12 @@
 var app = angular.module('myApp', ['ionic']);
 app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
     var param = $location.search();
-
-
-
     $scope.page=1;
     $scope.pageSize=10;
     $scope.orders = [];
     $scope.tipShow=false;
     $scope.bottomTip=false;
     $scope.hasInfinite = true;
-
-
     // 默认加载
     $http({
         method: 'POST',

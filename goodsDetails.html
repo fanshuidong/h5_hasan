@@ -35,8 +35,8 @@
             </ul>
             <p class="part3"><span>库存{{goods.inventory}}件</span><span>已售{{goods.sold}}件</span></p>
             <div class="part4 clear">
-                <img data-ng-src="{{goods.resources['1002'][0].url}}"/>
-                <img data-ng-src="{{goods.resources['1010'][0].url}}" id=""/>
+                <a ng-href="{{goods.resources['1002'][0].link}}"><img data-ng-src="{{goods.resources['1002'][0].url}}"/></a>
+                <a ng-href="cookbook.html#?id={{goods.resources['1010'][0].owner}}"><img data-ng-src="{{goods.resources['1010'][0].url}}"/></a>
             </div>
         </div>
         <div class="comments">
@@ -45,20 +45,19 @@
             </p>
             <!--有评价时-->
             <ul data-ng-show="goods.evaluations.length>0">
-                <li data-ng-repeat="item in goods.evaluations | limitTo：1 ">
+                <li data-ng-repeat="item in goods.evaluations | limitTo:1">
                     <p class="clear"><span><img data-ng-src="{{item.avatar}}"/></span><span>{{item.mobile}}</span><span>{{item.created | timeFilter}}</span></p>
                     <p class="content">{{item.content}}</p>
                 </li>
             </ul>
-
             <!--没有评价时-->
             <p class="noComments" data-ng-show="goods.evaluations.length==0">暂时还没有评论</p>
 
         </div>
 
         <div class="cart">
-            <p><span><img src="images/cart.png"/><em>2</em></span></p>
-            <p>加入购物车</p>
+            <p><span><img src="images/cart.png" ng-click="goCart()"/><em>2</em></span></p>
+            <p ng-click="addCart()">加入购物车</p>
         </div>
 
     </div>

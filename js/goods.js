@@ -21,5 +21,19 @@ app.controller('goodsCtrl', function($scope, $location,$http) {
         loop : true,
         speed:1000
     });
+
+    $scope.goCart = function () {
+        window.location.href = "hasanapp://cartListAction";
+    };
+    $scope.addCart = function () {
+        var goodsList = {
+            goodsId:$scope.goods.id,
+            goodsName:$scope.goods.name,
+            goodsImg:$scope.goods.resources['1000'][0].url,
+            goodsPrice:$scope.goods.prices[0].price,
+            goodsNum:1
+        };
+        window.location.href = "hasanapp://addCartAction?goodsList="+JSON.stringify(goodsList);
+    }
 });
 // document.write("<script language='javascript' src='js/filter.js'></script>");
