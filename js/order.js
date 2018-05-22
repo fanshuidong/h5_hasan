@@ -10,10 +10,12 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
     // 默认加载
     $http({
         method: 'POST',
-        url:"http://121.196.193.96/hasan/order/list",
+        // url:"http://121.196.193.96/hasan/order/list",
+        url:"http://localhost:8089/hasan/order/list",
         headers:{'token':param.token},
         data:{uid:param.uid,page:$scope.page,pageSize:$scope.pageSize}
     }).success(function(data) {
+        console.log(data);
         if(data.attach.list.length>0){
             $scope.orders = data.attach.list;
         }else{
@@ -71,6 +73,10 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
         });
         $scope.$broadcast('scroll.infiniteScrollComplete');
     };
+
+    $(".heng-around > li").click(function () {
+        alert(this.id);
+    });
 
 
     // 设置页面高度
