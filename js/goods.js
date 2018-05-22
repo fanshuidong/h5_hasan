@@ -23,7 +23,7 @@ app.controller('goodsCtrl', function($scope, $location,$http) {
     });
 
     $scope.goCart = function () {
-        window.location.href = "hasanapp://cartListAction";
+        window.location.href = "hasanapp://app.hasan.web/cartListAction";
     };
     $scope.addCart = function () {
         var goodsList = {
@@ -33,7 +33,7 @@ app.controller('goodsCtrl', function($scope, $location,$http) {
             goodsPrice:$scope.goods.prices[0].price,
             goodsNum:1
         };
-        window.location.href = "hasanapp://addCartAction?goodsList="+JSON.stringify(goodsList);
+        window.location.href = "hasanapp://app.hasan.web/addCartAction?goodsList="+JSON.stringify(goodsList);
     }
 });
 // document.write("<script language='javascript' src='js/filter.js'></script>");
