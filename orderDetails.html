@@ -7,45 +7,44 @@
     <meta name="format-detection" content="telephone=no,email=no">
     <title>订单详情</title>
     <script type="text/javascript" src="js/common/rem.js"></script>
+    <script type="text/javascript" src="lib/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="js/orderDetail.js"></script>
+    <script type="text/javascript" src="js/common/filter.js"></script>
+
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body ng-app="myApp" ng-controller="orderCtrl">
     <div class="proDetails">
-        <p class="title"><a href="javascript:;"><img src="images/arrow_left.png"/></a>订单详情</p>
+        <p class="title"><a href="order.html#?token={{token}}"><img src="images/arrow_left.png"/></a>订单详情</p>
         <div class="orderInfo">
-            <p><span>小浣熊</span><span>15257****11</span></p>
-            <p class="clear"><img src="images/map.png"/><span>觉得时间发货进度落后极大浪发货进度落后极大费机会你尽快</span> </p>
+            <p><span>{{order.recipients}}</span><span>{{order.recipientsMobile}}</span></p>
+            <p class="clear"><img src="images/map.png"/><span>{{order.recipientsAddr}}</span> </p>
         </div>
         <div class="orderInfos">
             <ul class="dishes">
-                <li class="clear">
-                    <img src="images/img5.png"/>
-                    <span>大白菜</span>
+                <li class="clear" ng-repeat="item in order.goods">
+                    <img ng-src="{{order.icons[item.goodsId]}}"/>
+                    <span>{{item.goodsName}}</span>
                     <p>
-                        <span>￥ 12.3</span>
-                        <span>x 1</span>
-                    </p>
-                </li>
-                <li class="clear">
-                    <img src="images/img6.png"/>
-                    <span>大白菜</span>
-                    <p>
-                        <span>￥ 12.3</span>
-                        <span>x 1</span>
+                        <span>￥ {{item.unitPrice}}</span>
+                        <span>x {{item.goodsNum}}</span>
                     </p>
                 </li>
             </ul>
             <ul class="addressInfo">
-                <li class="clear"><span>订单编号</span><span>233333</span></li>
-                <li class="clear"><span>下单时间</span><span>2015-09-09 12:12:13</span></li>
-                <li class="clear"><span>订单总额</span><span>￥78.45(快递费自付)</span></li>
-                <li class="clear"><span>状<em style="opacity: 0">状态</em>态</span><span>已完结</span></li>
+                <li class="clear"><span>订单编号</span><span>{{order.id}}</span></li>
+                <li class="clear"><span>下单时间</span><span>{{order.created|timeFilter}}</span></li>
+                <li class="clear"><span>订单总额</span><span>￥{{order.price}}(快递费自付)</span></li>
+                <li class="clear"><span>状<em style="opacity: 0">状态</em>态</span><span>{{order.state|enumFilter:'orderState'}}</span></li>
             </ul>
         </div>
-        <div class="sureGet">
-            <a href="javascript:;">确认收货</a>
+        <div class="sureGet" ng-show="order.state=='DELIVERED'">
+            <a href="javascript:;" ng-click="receive()">确认收货</a>
         </div>
-
+        <div class="sureGet" ng-show="order.state=='RECEIVED'">
+            <a href="javascript:;" ng-click="goEvaluation()">去评价</a>
+        </div>
 
     </div>
 

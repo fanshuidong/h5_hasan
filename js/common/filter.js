@@ -22,6 +22,48 @@ app.service("DateUtil",function () {
         }
     };
 });
+
+//定义枚举实体
+app.service('enums',function () {
+    this.orderState = [
+        {value:"INIT",text:"待支付",mark:1},
+        {value:"PAYING",text:"支付中",mark:2},
+        {value:"PAID",text:"待发货",mark:3},
+        {value:"DELIVERED",text:"待收货",mark:4},
+        {value:"RECEIVED",text:"待评价",mark:5},
+        {value:"FINISH",text:"已完成",mark:6}
+    ];
+
+    this.enumConfig = {
+        orderState:this.orderState
+    };
+    this.getEntity = function (entity,value) {
+        for(var index in entity){
+            if(value == entity[index].mark || value==entity[index].value){
+                return entity[index];
+            }
+        }
+        return null;
+    };
+});
+
+//枚举对象通用过滤器
+app.filter("enumFilter",function (enums,$sce) {
+    return function (value,name) {//value为需要被过滤的值,name表示枚举对象名
+        var entity = enums.enumConfig[name];
+        for(var index in entity){
+            if(value == entity[index].mark || value==entity[index].value || value==entity[index].id){
+                if(entity[index].color){
+                    return $sce.trustAsHtml("<span style='color: "+entity[index].color+"'>"+entity[index].text+"</span>");
+                }else{
+                    return entity[index].name?entity[index].name:entity[index].text;
+                }
+            }
+        }
+        return value;
+    }
+});
+
 //时间过滤展示
 app.filter("timeFilter",function(DateUtil){
     return function(str){
