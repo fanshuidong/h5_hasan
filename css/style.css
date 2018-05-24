@@ -11,6 +11,19 @@ body {font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Aria
 .clear:after {content: "";display: block;height: 0;clear: both;}
 .clear {zoom: 1;}
 
+/*iPhoneX适配，根据需求添加padding,确定安全域*/
+body {
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+    padding-left: constant(safe-area-inset-left);
+    padding-left: env(safe-area-inset-left);
+    padding-right: constant(safe-area-inset-right);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: constant(safe-area-inset-bottom);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+
 /*商品详情*/
 .proDetails{width:100%;height:auto;padding-bottom:3.8rem;position: relative;}
 .proBanner a{display: block;width:1.7rem;height: 1.7rem;position: absolute;top:1rem;left:1rem;z-index: 2}
@@ -126,33 +139,39 @@ body {font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Aria
 .heng-around {display: flex;display:  -webkit-flex;flex-flow: row nowrap;-webkit-flex-flow: row nowrap;justify-content: space-around;-webkit-justify-content: space-around;align-items: center;-webkit-align-items: center;}
 
 
-/*iPhoneX适配，根据需求添加padding,确定安全域*/
-body {
-    padding-top: constant(safe-area-inset-top);
-    padding-top: env(safe-area-inset-top);
-    padding-left: constant(safe-area-inset-left);
-    padding-left: env(safe-area-inset-left);
-    padding-right: constant(safe-area-inset-right);
-    padding-right: env(safe-area-inset-right);
-    padding-bottom: constant(safe-area-inset-bottom);
-    padding-bottom: env(safe-area-inset-bottom);
-}
-
+.welcomePage{position:absolute;width:100%;height:100%;}
 .listResult{width:100%;height:2rem;line-height: 2rem;font-size: 0.9rem;text-align: center;}
+.top{width:9.1rem;position: absolute;top:3rem;left:1.3rem;}
+.top .part1{height:auto;position: relative;}
+.top .part1>span{text-align: center;display: block;}
+.top .part1>span:nth-of-type(1){line-height: 2rem;font-size: 1.3rem;font-weight:bold;}
+.top .part1>span:nth-of-type(2){line-height: 2rem;font-size: 1rem;}
+.top .part1>div{width:4rem;height: 3.5rem;position: absolute;bottom:0;right:0;border-bottom: 1px solid #000;border-right: 1px solid #000;}
+.top .part1>img{width:4.7rem;position: absolute;right:-5.2rem;top:-0.8rem;}
+.top .part2{font-size: 0.8rem;color:#454545;line-height: 2rem;text-align: justify;}
 
+.bottom{width:19.2rem;height:auto;position: absolute;bottom: 3rem;right:1.5rem;}
+.bottom .part1{width:100%;}
+.bottom .part1 img{width:5.7rem;margin-left:5.3rem;}
+.bottom .part1 p:nth-of-type(1){font-size: 4.5rem;text-align: right;font-weight:bold;margin-top:-1.5rem;}
+.bottom .part1 p:nth-of-type(2){font-size: 1.2rem;text-align: right;}
+.bottom .part2{width:100%;box-sizing: border-box;padding:1rem 0.5rem;border: 1px solid #979797;}
+.bottom .part2 p:nth-of-type(1){font-size: 1.4rem;font-weight: bold;text-align: right;line-height: 2rem;}
+.bottom .part2 p:nth-of-type(2){font-size: 1rem;text-align: right;line-height: 1.4rem;color:#5C5C5C;}
 
 
 @media only screen and (device-width: 375px)and (device-height:812px)and (-webkit-device-pixel-ratio:3) {
-    .cart{
+    .cart {
         padding-bottom: constant(safe-area-inset-bottom);
         padding-bottom: env(safe-area-inset-bottom)
     }
-    .sureGet{
-        height:calc(4rem + constant(safe-area-inset-bottom));
-        height:calc(4rem + env(safe-area-inset-bottom));
+
+    .sureGet {
+        height: calc(4rem + constant(safe-area-inset-bottom));
+        height: calc(4rem + env(safe-area-inset-bottom));
     }
 
-
 }
+
 
 
