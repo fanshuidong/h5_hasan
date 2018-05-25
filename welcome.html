@@ -7,11 +7,13 @@
     <meta name="format-detection" content="telephone=no,email=no">
     <title>欢迎页</title>
     <script type="text/javascript" src="js/common/rem.js"></script>
-
+    <script type="text/javascript" src="lib/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="js/welcome.js"></script>
+    <script type="text/javascript" src="js/common/filter.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-</body>
+<body ng-controller="welcomeCtrl">
     <div class="welcomePage">
         <div class="top">
             <div class="part1">
@@ -20,22 +22,19 @@
                 <span>生 活 百 味</span>
                 <span>Flavor of life</span>
             </div>
-            <p class="part2">在作者脑海里印象最深刻的，是他父亲替他买橘子时在月台爬上攀下时的背影。作者用朴素的文字，把父亲对儿女的爱</p>
+            <p class="part2">{{guide.verse}}</p>
         </div>
         <div class="bottom">
             <div class="part1">
                 <img src="images/fish.png"/>
-                <p>早安</p>
-                <p>GOOD MORNING</p>
+                <p>{{guide.greetingC}}</p>
+                <p>{{guide.greetingE}}</p>
             </div>
             <div class="part2">
-                <p>2018.5.18 星期三</p>
-                <p>五月十八丁丑年【 狗年】丁末月 辛丑日</p>
+                <p>{{guide.date}} {{guide.week}}</p>
+                <p>{{guide.gz}}</p>
             </div>
-
-
-
         </div>
     </div>
-
+</body>
 </html>
