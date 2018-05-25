@@ -40,8 +40,9 @@ body {
 .proContent .part3 span{width:50%;float: left;font-size: 0.9rem;color:#d0d0d0;}
 .proContent .part3 span:nth-of-type(2){text-align: right;}
 .proContent .part4{width:100%;padding:1rem 0;}
-.proContent .part4 img{width:11rem;height:7rem;float: left;margin-left: 1rem;}
-.proContent .part4 img:first-child{margin:0;}
+.proContent .part4>a{width:11rem;height:7rem;float: left;margin-left: 0.8rem;border:none;}
+.proContent .part4>a img{width:100%;height:100%;}
+.proContent .part4>a:first-child{margin:0;}
 .comments{width:100%;padding:1rem;}
 .comments>p:first-child{font-size: 0.9rem;}
 .comments>p:first-child{font-size: 0.9rem;line-height: 1.2rem;}
