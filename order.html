@@ -52,6 +52,12 @@
                                 <span>共{{item.count}}件</span>
                             </div>
                             <p class="clear"><span>共{{item.count}}件商品：{{item.price}}元</span><span>{{item.state| enumFilter:'orderState'}}</span></p>
+                            <span ng-show="item.state=='INIT'">
+                                <a href="hasanapp://app.hasan.web/payAction?orderId={{item.id}}">去支付</a>
+                            </span>
+                            <span ng-show="item.state=='DELIVERED'">
+                                <a href="javascript:;" ng-click="receive(item)">确认收货</a>
+                            </span>
                             <span ng-show="item.state=='RECEIVED'">
                                 <a href="javascript:;" ng-click="goEvaluation(item)">去评价</a>
                             </span>

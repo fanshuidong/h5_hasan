@@ -153,7 +153,7 @@ body {
 .bottom{width:19.2rem;height:auto;position: absolute;bottom: 3rem;right:1.5rem;}
 .bottom .part1{width:100%;}
 .bottom .part1 img{width:5.7rem;margin-left:5.3rem;}
-.bottom .part1 p:nth-of-type(1){font-size: 4.5rem;text-align: right;font-weight:bold;margin-top:-1.5rem;}
+.bottom .part1 p:nth-of-type(1){font-size: 4rem;text-align: right;font-weight:bold;margin-top:-1.5rem;}
 .bottom .part1 p:nth-of-type(2){font-size: 1.2rem;text-align: right;}
 .bottom .part2{width:100%;box-sizing: border-box;padding:1rem 0.5rem;border: 1px solid #979797;}
 .bottom .part2 p:nth-of-type(1){font-size: 1.4rem;font-weight: bold;text-align: right;line-height: 2rem;}

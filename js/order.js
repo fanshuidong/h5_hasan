@@ -119,6 +119,19 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
         });
     };
 
+    //确认收货
+    $scope.receive = function (item) {
+        $http({
+            method: 'POST',
+            url:"http://121.196.193.96/hasan/order/receive",
+            headers:{'token':$scope.token},
+            data:{id:item.id}
+        }).success(function(data) {
+            if(data.code==='code.success')
+                item.state = 'RECEIVED';
+        });
+    };
+
     // 设置页面高度
     document.querySelector(".order").style.height=document.documentElement.clientHeight+'px';
 });

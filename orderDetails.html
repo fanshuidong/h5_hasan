@@ -35,9 +35,12 @@
             <ul class="addressInfo">
                 <li class="clear"><span>订单编号</span><span>{{order.id}}</span></li>
                 <li class="clear"><span>下单时间</span><span>{{order.created|timeFilter}}</span></li>
-                <li class="clear"><span>订单总额</span><span>￥{{order.price}}(快递费自付)</span></li>
+                <li class="clear"><span>订单总额</span><span>￥{{order.price}}</span></li>
                 <li class="clear"><span>状<em style="opacity: 0">状态</em>态</span><span>{{order.state|enumFilter:'orderState'}}</span></li>
             </ul>
+        </div>
+        <div class="sureGet" ng-show="order.state=='INIT'">
+             <a href="hasanapp://app.hasan.web/payAction?orderId={{order.id}}">去支付</a>
         </div>
         <div class="sureGet" ng-show="order.state=='DELIVERED'">
             <a href="javascript:;" ng-click="receive()">确认收货</a>
@@ -45,7 +48,6 @@
         <div class="sureGet" ng-show="order.state=='RECEIVED'">
             <a href="javascript:;" ng-click="goEvaluation()">去评价</a>
         </div>
-
     </div>
 
 

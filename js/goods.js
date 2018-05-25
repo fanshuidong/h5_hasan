@@ -59,7 +59,7 @@ app.controller('goodsCtrl', function($scope, $location,$http,$timeout) {
     };
     $scope.queryEvaluations = function () {
         window.location.href = "hasanapp://app.hasan.web/discussListAction?goodsId="+$scope.goods.id;
-    }
+    };
 });
 
 // document.write("<script language='javascript' src='js/filter.js'></script>");
