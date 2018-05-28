@@ -7,23 +7,23 @@ app.controller('goodsCtrl', function($scope, $location,$http,$timeout) {
     $http({
         method: 'POST',
         // url:"http://localhost:8089/hasan/goods/detail",
-        url:"http://121.196.193.96/hasan/goods/detail",
-        headers:{'token':param.token},
-        data:{id:param.id}
-    }).success(function(data) {
+        url: host+"/hasan/goods/detail",
+        headers: {'token': param.token},
+        data: {id: param.id}
+    }).success(function (data) {
         console.log(data);
         $scope.goods = data.attach;
         //获取用户会员信息
         $http({
             method: 'POST',
-            url:"http://121.196.193.96/hasan/common/wallet",
-            headers:{'token':param.token},
-            data:{}
-        }).success(function(data) {
+            url: host+"/hasan/common/wallet",
+            headers: {'token': param.token},
+            data: {}
+        }).success(function (data) {
             console.log(data);
             $scope.memberId = data.attach.memberId;
-            for(var i in $scope.goods.prices){
-                if($scope.goods.prices[i].memberId == $scope.memberId){
+            for (var i in $scope.goods.prices) {
+                if ($scope.goods.prices[i].memberId == $scope.memberId) {
                     $scope.goodsPrice = $scope.goods.prices[i].price;
                 }
             }

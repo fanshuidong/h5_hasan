@@ -11,8 +11,7 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
     // 默认加载
     $http({
         method: 'POST',
-        url:"http://121.196.193.96/hasan/order/list",
-        // url:"http://localhost:8089/hasan/order/list",
+        url:host+"/hasan/order/list",
         headers:{'token':$scope.token},
         data:{page:$scope.page,pageSize:$scope.pageSize}
     }).success(function(data) {
@@ -29,8 +28,7 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
         $timeout(function () {//和下拉动画配合时间
             $http({
                 method: 'POST',
-                url:"http://121.196.193.96/hasan/order/list",
-                // url:"http://localhost:8089/hasan/order/list",
+                url:host+"/hasan/order/list",
                 headers:{'token':$scope.token},
                 data:{page:$scope.page,pageSize:$scope.pageSize}
             }).success(function(data) {
@@ -52,8 +50,7 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
         $timeout(function () {//和下拉动画配合时间
         $http({
             method: 'POST',
-            url:"http://121.196.193.96/hasan/order/list",
-            // url:"http://localhost:8089/hasan/order/list",
+            url:host+"/hasan/order/list",
             headers:{'token':$scope.token},
             data:{page:$scope.page,pageSize:$scope.pageSize}
         }).success(function(data) {
@@ -83,8 +80,7 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
             data.state = this.id;
         $http({
             method: 'POST',
-            url:"http://121.196.193.96/hasan/order/list",
-            // url:"http://localhost:8089/hasan/order/list",
+            url:host+"/hasan/order/list",
             headers:{'token':$scope.token},
             data:data
         }).success(function(data) {
@@ -99,8 +95,7 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
         var goodsList = [];
         $http({
             method: 'POST',
-            url:"http://121.196.193.96/hasan/order/detail",
-            // url:"http://localhost:8089/hasan/order/detail",
+            url:host+"/hasan/order/detail",
             headers:{'token':$scope.token},
             data:{id:item.id}
         }).success(function(data) {
@@ -123,7 +118,7 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
     $scope.receive = function (item) {
         $http({
             method: 'POST',
-            url:"http://121.196.193.96/hasan/order/receive",
+            url:host+"/hasan/order/receive",
             headers:{'token':$scope.token},
             data:{id:item.id}
         }).success(function(data) {

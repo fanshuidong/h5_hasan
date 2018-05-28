@@ -5,8 +5,7 @@ app.controller('welcomeCtrl', function($scope, $location,$http) {
     // 默认加载
     $http({
         method: 'POST',
-        url:"http://121.196.193.96/hasan/common/guide",
-        // url:"http://localhost:8089/hasan/common/guide",
+        url:host+"/hasan/common/guide",
         data:{}
     }).success(function(data) {
         $scope.guide = data.attach;

@@ -7,7 +7,7 @@ app.controller('cookbookCtrl', function($scope, $location,$http,$timeout) {
     $scope.resources = [];//菜谱轮播图
     $http({
         method: 'POST',
-        url:"http://121.196.193.96/hasan/cookbook/detail",
+        url:host+"/hasan/cookbook/detail",
         headers:{'token':param.token},
         data:{id:param.id}
     }).success(function(data) {
@@ -37,7 +37,7 @@ app.controller('cookbookCtrl', function($scope, $location,$http,$timeout) {
     //获取用户会员信息
     $http({
         method: 'POST',
-        url:"http://121.196.193.96/hasan/common/wallet",
+        url:host+"/hasan/common/wallet",
         headers:{'token':param.token},
         data:{}
     }).success(function(data) {
@@ -51,7 +51,7 @@ app.controller('cookbookCtrl', function($scope, $location,$http,$timeout) {
     $scope.addCart = function (item) {
         $http({
             method: 'POST',
-            url:"http://121.196.193.96/hasan/goods/detail",
+            url:host+"/hasan/goods/detail",
             headers:{'token':param.token},
             data:{id:item.id}
         }).success(function(data) {

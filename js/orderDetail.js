@@ -5,8 +5,7 @@ app.controller('orderCtrl', function($scope, $location,$http) {
     // 默认加载
     $http({
         method: 'POST',
-        url:"http://121.196.193.96/hasan/order/detail",
-        // url:"http://localhost:8089/hasan/order/detail",
+        url:host+"/hasan/order/detail",
         headers:{'token':$scope.token},
         data:{id:param.id}
     }).success(function(data) {
@@ -18,7 +17,7 @@ app.controller('orderCtrl', function($scope, $location,$http) {
     $scope.receive = function () {
         $http({
             method: 'POST',
-            url:"http://121.196.193.96/hasan/order/receive",
+            url:host+"/hasan/order/receive",
             headers:{'token':$scope.token},
             data:{id:$scope.order.id}
         }).success(function(data) {
