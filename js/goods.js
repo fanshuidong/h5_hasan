@@ -60,6 +60,15 @@ app.controller('goodsCtrl', function($scope, $location,$http,$timeout) {
     $scope.queryEvaluations = function () {
         window.location.href = "hasanapp://app.hasan.web/discussListAction?goodsId="+$scope.goods.id;
     };
+    
+    //点击商品滚动图放大
+    $scope.lookPicture = function (index) {
+        var imgArray=[];
+        for(var i=0;i<$scope.goods.resources['1001'].length;i++)
+        imgArray.push($scope.goods.resources['1001'][i].url);
+        // alert("hasanapp://app.hasan.web/lookPictureAction?position="+index+"&imgArray="+JSON.stringify(imgArray));
+        window.location.href = "hasanapp://app.hasan.web/lookPictureAction?position="+index+"&imgArray="+JSON.stringify(imgArray);
+    }
 });
 
 // document.write("<script language='javascript' src='js/filter.js'></script>");
