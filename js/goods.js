@@ -13,21 +13,21 @@ app.controller('goodsCtrl', function($scope, $location,$http,$timeout) {
     }).success(function (data) {
         console.log(data);
         $scope.goods = data.attach;
-        // //获取用户会员信息
-        // $http({
-        //     method: 'POST',
-        //     url: host+"/hasan/common/wallet",
-        //     headers: {'token': param.token},
-        //     data: {}
-        // }).success(function (data) {
-        //     console.log(data);
-        //     $scope.memberId = data.attach.memberId;
-        //     for (var i in $scope.goods.prices) {
-        //         if ($scope.goods.prices[i].memberId == $scope.memberId) {
-        //             $scope.goodsPrice = $scope.goods.prices[i].price;
-        //         }
-        //     }
-        // });
+        //获取用户会员信息
+        $http({
+            method: 'POST',
+            url: host+"/hasan/common/wallet",
+            headers: {'token': param.token},
+            data: {}
+        }).success(function (data) {
+            console.log(data);
+            $scope.memberId = data.attach.memberId;
+            for (var i in $scope.goods.prices) {
+                if ($scope.goods.prices[i].memberId == $scope.memberId) {
+                    $scope.goodsPrice = $scope.goods.prices[i].price;
+                }
+            }
+        });
     });
 
     $timeout(function () {
@@ -65,7 +65,7 @@ app.controller('goodsCtrl', function($scope, $location,$http,$timeout) {
     $scope.lookPicture = function (index) {
         var imgArray=[];
         for(var i=0;i<$scope.goods.resources['1001'].length;i++)
-        imgArray.push($scope.goods.resources['1001'][i].url);
+            imgArray.push($scope.goods.resources['1001'][i].url);
         // alert("hasanapp://app.hasan.web/lookPictureAction?position="+index+"&imgArray="+JSON.stringify(imgArray));
         window.location.href = "hasanapp://app.hasan.web/lookPictureAction?position="+index+"&imgArray="+JSON.stringify(imgArray);
     }

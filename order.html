@@ -40,11 +40,11 @@
                 <div class="hasOrder">
                     <ul>
                         <li data-ng-repeat="item in orders">
-                            <div  class="clear">
+                            <div  class="clear" data-ng-click="gotoOrderDetails(item.id)">
                                 <ul class="clear">
                                     <li ng-repeat="(goodsId,icon) in item.icons"> <img ng-src="{{icon}}"/></li>
                                 </ul>
-                                <a href="orderDetails.html#?id={{item.id}}&token={{token}}"><img src="images/arrow.png"/> </a>
+                                <a href="#"><img src="images/arrow.png"/> </a>
                                 <span>共{{item.count}}件</span>
                             </div>
                             <p class="clear"><span>共{{item.count}}件商品：{{item.price}}元</span><span>{{item.state| enumFilter:'orderState'}}</span></p>

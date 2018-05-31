@@ -33,7 +33,7 @@
             <ul class="addressInfo">
                 <li class="clear"><span>订单编号</span><span>{{order.id}}</span></li>
                 <li class="clear"><span>下单时间</span><span>{{order.created|timeFilter}}</span></li>
-                <li class="clear"><span>订单总额</span><span>￥{{order.price}}</span></li>
+                <li class="clear"><span>订单总额</span><span>￥{{order.price}}</span><span style="color: red">{{expressInfo}}</span></li>
                 <li class="clear"><span>状<em style="opacity: 0">状态</em>态</span><span>{{order.state|enumFilter:'orderState'}}</span></li>
             </ul>
         </div>

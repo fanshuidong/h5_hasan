@@ -127,6 +127,10 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
         });
     };
 
+    $scope.gotoOrderDetails = function (id) {
+        window.location.href = "orderDetails.html#?id="+id+"&token="+$scope.token;
+    };
+
     // 设置页面高度
     document.querySelector(".order").style.height=document.documentElement.clientHeight+'px';
 });

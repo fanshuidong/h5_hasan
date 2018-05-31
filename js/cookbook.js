@@ -34,16 +34,16 @@ app.controller('cookbookCtrl', function($scope, $location,$http,$timeout) {
         });
     },800);
 
-    //获取用户会员信息
-    // $http({
-    //     method: 'POST',
-    //     url:host+"/hasan/common/wallet",
-    //     headers:{'token':param.token},
-    //     data:{}
-    // }).success(function(data) {
-    //     console.log(data);
-    //     $scope.memberId = data.attach.memberId;
-    // });
+    // 获取用户会员信息
+    $http({
+        method: 'POST',
+        url:host+"/hasan/common/wallet",
+        headers:{'token':param.token},
+        data:{}
+    }).success(function(data) {
+        console.log(data);
+        $scope.memberId = data.attach.memberId;
+    });
 
     $scope.goCart = function () {
         window.location.href = "hasanapp://app.hasan.web/cartListAction";

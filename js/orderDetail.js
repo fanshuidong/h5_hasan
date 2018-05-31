@@ -10,6 +10,10 @@ app.controller('orderCtrl', function($scope, $location,$http) {
         data:{id:param.id}
     }).success(function(data) {
         $scope.order = data.attach;
+        if(Number($scope.order.expressFee)===0)
+            $scope.expressInfo = "（包邮）";
+        else
+            $scope.expressInfo = "（含快递费："+Number($scope.order.expressFee)+"）";
         console.log(data);
     });
 
