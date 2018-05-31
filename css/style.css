@@ -68,7 +68,7 @@ body {
 .menu{width:100%;padding:0 0 0.5rem;}
 .menu .header{width:100%;height:auto;position: relative;}
 .menu .header a{display: block;width:1.7rem;height: 1.7rem;position: absolute;top:1rem;left:1rem;z-index: 2}
-.menu .content{width:100%;padding:0 1.3rem;}
+.menu .content{width:100%;padding:0 1.3rem 8.3rem;}
 .menu .content>h3{font-size: 1.2rem;line-height: 3rem;text-align: center;}
 .menu .content>.material{padding-bottom: 1rem;border-bottom: 1px solid #d0d0d0;}
 .menu .content>.material>h3{font-size: 1rem;line-height: 2.5rem;}
@@ -78,6 +78,7 @@ body {
 .menu .content>.steps li{border-bottom: 1px solid #d0d0d0;}
 .menu .content>.steps li>h3{line-height: 3}
 .menu .content>.steps li>p{font-size: 1rem;line-height: 1.6rem;margin: 1.5rem 0;color:#888888;}
+.menu .carts{width:100%;position:fixed;bottom:0;left:0;right:0;background: #fff; }
 .menu .carts>h3{width:100%;line-height: 3.8rem;height:3.8rem;text-align: center;font-size: 1rem;position: relative;}
 .menu .carts>h3 span{display:inline-block;width:1.9rem;height:auto; ;position: absolute;top:1.2rem;right:1rem;}
 .menu .carts>h3 span em{display:block;width:1.2rem;height:1.2rem;line-height: 1.2rem;text-align: center;font-size: 0.8rem;color:#fff;background: #fa464f;border-radius:50%;position: absolute;top:-0.6rem;right:-0.6rem;font-style: normal;}

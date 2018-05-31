@@ -41,12 +41,12 @@
                     </li>
                 </ul>
             </div>
-            <div class="carts">
-                <h3>选择丢进购物车<span><img src="images/cart.png" ng-click="goCart()"/><em>{{cartNum}}</em></span></h3>
-                <ul class="clear">
-                    <li data-ng-repeat="item in cookbook.goods"><img data-ng-src="{{item.icon.url}}" ng-click="addCart(item)"/> </li>
-                </ul>
-            </div>
+        </div>
+        <div class="carts">
+            <h3>选择丢进购物车<span><img src="images/cart.png" ng-click="goCart()"/><em>{{cartNum}}</em></span></h3>
+            <ul class="clear">
+                <li data-ng-repeat="item in cookbook.goods"><img data-ng-src="{{item.icon.url}}" ng-click="addCart(item)"/> </li>
+            </ul>
         </div>
     </div>
     <!--<script type="text/javascript" src="lib/swiper/swiper-4.2.6.min.js"></script>-->
