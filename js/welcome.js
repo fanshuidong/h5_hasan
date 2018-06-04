@@ -40,4 +40,13 @@ app.controller('welcomeCtrl', function($scope, $location,$http) {
         }
     });
 
+    $http({
+        method: 'POST',
+        url:host+"/hasan/resource/list",
+        data:{cfgIds:[1050]}
+    }).success(function(data) {
+        var img = data.attach.list[0].url;
+        $(".welcomePage").css("background-image","url("+img+")");
+    });
+
 });
