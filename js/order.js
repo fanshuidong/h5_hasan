@@ -19,23 +19,32 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
         $scope.orders = data.attach.list;
         if($scope.orders.length === 0)
             $scope.topTip = true;
-        for(var i =0 ;i<$scope.orders.length;i++){//待支付状态的订单还需要去后台计算一次价格
-            if($scope.orders[i].state === 'INIT'){
+        $scope.preview($scope.orders);
+    });
+
+    //待支付状态订单价格重新计算
+    $scope.preview = function(orders){
+        for(var i =0 ;i<orders.length;i++){//待支付状态的订单还需要去后台计算一次价格
+            if(orders[i].state === 'INIT') {
                 var goodsEntity = {};
-                for(var j = 0;j<$scope.orders[i].goods.length;j++){
-                    goodsEntity[$scope.orders[i].goods[j].goodsId] = $scope.orders[i].goods[j].goodsId.goodsNum
+                for (var j = 0; j <orders[i].goods.length; j++) {
+                    goodsEntity[orders[i].goods[j].goodsId] = orders[i].goods[j].goodsNum
                 }
-                $http({
-                    method: 'POST',
-                    url:host+"/hasan/order/pay/preview",
-                    headers:{'token':$scope.token},
-                    data:goodsEntity
-                }).success(function(data) {
-                    $scope.orders[i].price =data.attach.expAmount+data.attach.basicAmount+data.attach.rechargeAmount;
+                $.ajax({
+                    type : "POST",
+                    async:false,
+                    url : host + "/hasan/order/pay/preview",
+                    data : JSON.stringify({goods: goodsEntity}),
+                    contentType : "application/json",
+                    dataType : "json",
+                    success:function(data) {
+                        orders[i].price = data.attach.expAmount?data.attach.expAmount:0
+                        +data.attach.basicAmount?data.attach.basicAmount:0+data.attach.rechargeAmount?data.attach.rechargeAmount:0;
+                    }
                 });
             }
         }
-    });
+    }
 
     // 下拉刷新
     $scope.doRefresh = function() {
@@ -54,6 +63,7 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
                     $scope.topTip = true;
                 $scope.bottomTip=false;
                 $scope.hasInfinite = true;
+                $scope.preview($scope.orders);
             });
             $scope.$broadcast('scroll.refreshComplete');
         },888);
@@ -75,6 +85,7 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
                 for(var i = 0 ; i < data.attach.list.length ; i++){
                     $scope.orders.push(data.attach.list[i]);
                 }
+                $scope.preview($scope.orders);
                 $scope.hasInfinite =true;
                 $scope.bottomTip=false;
             } else {//本次请求没有数据
@@ -104,6 +115,7 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
             $scope.orders = data.attach.list;
             if($scope.orders.length === 0)
                 $scope.topTip = true
+            $scope.preview($scope.orders);
         });
     });
     //去评价

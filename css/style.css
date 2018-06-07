@@ -23,7 +23,7 @@ body {
     padding-bottom: env(safe-area-inset-bottom);
 }
 
-
+.order{width:100%;height:auto;padding-bottom:3.8rem;position: relative;}
 /*商品详情*/
 .proDetails{width:100%;height:auto;padding-bottom:3.8rem;position: relative;}
 .proBanner a{display: block;width:1.7rem;height: 1.7rem;position: absolute;top:1rem;left:1rem;z-index: 2}

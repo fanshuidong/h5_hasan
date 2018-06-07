@@ -10,11 +10,33 @@ app.controller('orderCtrl', function($scope, $location,$http) {
         data:{id:param.id}
     }).success(function(data) {
         $scope.order = data.attach;
+        //待支付状态订单价格重新计算
+        if($scope.order.state === 'INIT') {
+            var goodsEntity = {};
+            for (var j = 0; j <$scope.order.goods.length; j++) {
+                goodsEntity[$scope.order.goods[j].goodsId] = $scope.order.goods[j].goodsNum
+            }
+            $.ajax({
+                type : "POST",
+                async:false,
+                url : host + "/hasan/order/pay/preview",
+                data : JSON.stringify({goods: goodsEntity}),
+                contentType : "application/json",
+                dataType : "json",
+                success:function(data) {
+                    $scope.order.price = data.attach.expAmount?data.attach.expAmount:0
+                    +data.attach.basicAmount?data.attach.basicAmount:0+data.attach.rechargeAmount?data.attach.rechargeAmount:0;
+                    for (var i = 0; i <$scope.order.goods.length; i++) {
+                        $scope.order.goods[i].unitPrice = data.attach.prices[$scope.order.goods[i].goodsId];
+                    }
+                    $scope.order.expressFee = data.attach.expressFee?data.attach.expressFee:0
+                }
+            });
+        }
         if(Number($scope.order.expressFee)===0)
             $scope.expressInfo = "（包邮）";
         else
             $scope.expressInfo = "（含快递费："+Number($scope.order.expressFee)+"）";
-        console.log(data);
     });
 
     //确认收货
