@@ -18,7 +18,23 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
         console.log(data);
         $scope.orders = data.attach.list;
         if($scope.orders.length === 0)
-            $scope.topTip = true
+            $scope.topTip = true;
+        for(var i =0 ;i<$scope.orders.length;i++){//待支付状态的订单还需要去后台计算一次价格
+            if($scope.orders[i].state === 'INIT'){
+                var goodsEntity = {};
+                for(var j = 0;j<$scope.orders[i].goods.length;j++){
+                    goodsEntity[$scope.orders[i].goods[j].goodsId] = $scope.orders[i].goods[j].goodsId.goodsNum
+                }
+                $http({
+                    method: 'POST',
+                    url:host+"/hasan/order/pay/preview",
+                    headers:{'token':$scope.token},
+                    data:goodsEntity
+                }).success(function(data) {
+                    $scope.orders[i].price =data.attach.expAmount+data.attach.basicAmount+data.attach.rechargeAmount;
+                });
+            }
+        }
     });
 
     // 下拉刷新
