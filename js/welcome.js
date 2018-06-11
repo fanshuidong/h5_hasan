@@ -15,6 +15,8 @@ app.controller('welcomeCtrl', function($scope, $location,$http) {
         $scope.jieqi = $scope.guide.jieQiPassDay === 0?$scope.guide.jieqi:$scope.guide.nextJieQi;
         $scope.days = $scope.guide.jieQiPassDay === 0?"":$scope.parseNumber($scope.guide.nextJieQiDay)+"日后";
         $scope.jieqiG = $scope.guide.jieQiPassDay === 0?"":$scope.guide.jieqi+"已过";
+
+        $scope.lunarmonth = $scope.guide.lunarmonth.substring(0,1)+" "+$scope.guide.lunarmonth.substring(1)
     });
 
     $scope.parseNumber = function (number) {
