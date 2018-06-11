@@ -161,7 +161,22 @@ body {
 .bottom .part2 p:nth-of-type(1){font-size: 1.4rem;font-weight: bold;text-align: right;line-height: 2rem;}
 .bottom .part2 p:nth-of-type(2){font-size: 1rem;text-align: right;line-height: 1.4rem;color:#5C5C5C;}
 
-/*关于我们*/
+.welcomePage_{position:absolute;width:100%;height:100%;background-size: 100% 100%;color:#FFFFFF;background-image: url(../images/rldt.png)}
+.welcomePage_ .date{width: 6.8rem;height:1.33rem;position: absolute;top:4.33rem;left:9.8rem;font-size: 1rem}
+.welcomePage_ table{width: 14.07rem;height:25.07rem;position: absolute;top:6.07rem;left:5.53rem;border: 0.037rem solid;border-color: #FFFFFF;border-collapse: collapse}
+.welcomePage_ table td{width: 4.7rem;border:0.037rem solid #FFFFFF;}
+.welcomePage_ .td1_1{position:absolute;width: 1.07rem;height: 4.2rem;left: 7.33rem;top:12.26rem;font-size: 0.74rem;text-align:left;}
+.welcomePage_ .td1_2{position:absolute;width: 1.07rem;height: 11.27rem;left: 7.33rem;top:16.13rem;font-size: 0.74rem;text-align:left;}
+.welcomePage_ .td2_1{position:absolute;width: 2rem;height: 3rem;left: 11.53rem;top:8rem;font-size: 1rem;text-align:
+        center;background-image: url(../images/red.png);background-size: 100% 100%}
+.welcomePage_ .td2_2{position:absolute;width: 1.53rem;height: 11.67rem;left: 11.8rem;top:12.06rem;font-size: 1.2rem;text-align:left;}
+.welcomePage_ .td3_1{position:absolute;width: 2.33rem;height: 6.67rem;left: 16.2rem;top:7.6rem;font-size: 2.33rem;text-align:left;}
+.welcomePage_ .td3_2{position:absolute;width: 1.07rem;height: 5.67rem;left: 16.6rem;top:24.8rem;font-size: 1rem;text-align:left;}
+.welcomePage_ .jq{position:absolute;width: 4.8rem;height: 1.67rem;left: 10.2rem;top:32.13rem;font-size: 1.2rem;text-align:left;}
+.welcomePage_ .content_1{position:absolute;width: 13.06rem;height: 1.34rem;left: 6rem;top:35.27rem;font-size: 0.93rem;text-align:center;}
+.welcomePage_ .content_2{position:absolute;width: 10.26rem;height: 1.34rem;left: 7.4rem;top:37.27rem;font-size: 0.93rem;text-align:center;}
+
+    /*关于我们*/
 .logo{margin-left: 9.93rem;margin-top: 2.4rem;height: 5rem;width: 5.26rem;}
 .version{margin-left: 10.5rem;margin-right: 10.5rem;margin-top:1rem;text-align: center;font-size: 0.8rem;color:#B0B0B0;}
 .aboutContent{margin-left: 3.86rem;margin-right: 3.86rem;margin-top: 1.67rem;text-align: center}

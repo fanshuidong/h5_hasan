@@ -1,5 +1,6 @@
 var app = angular.module('myApp', []);
 app.controller('welcomeCtrl', function($scope, $location,$http) {
+    var numberFormat=['一','二','三','四','五','六','七','八','九'];
     var param = $location.search();
     $scope.token = param.token;
     // 默认加载
@@ -10,35 +11,22 @@ app.controller('welcomeCtrl', function($scope, $location,$http) {
     }).success(function(data) {
         $scope.guide = data.attach;
         console.log(data);
-        var hour = $scope.guide.hour;
-        $scope.guide.date = $scope.guide.lunaryear+"-"+$scope.guide.month+"-"+$scope.guide.day;
-        $scope.guide.date = $scope.guide.lunaryear+"-"+$scope.guide.month+"-"+$scope.guide.day;
-        $scope.guide.week = "星期"+$scope.guide.week;
-        $scope.guide.gz = $scope.guide.lunarmonth+$scope.guide.lunarday+$scope.guide.suici[0]+
-            "【"+$scope.guide.shengxiao+"年】"+" "+$scope.guide.suici[1]+" "+$scope.guide.suici[2];
-        // $scope.guide.jieqi = "小满";
-        if(!$scope.guide.jieqi){
-            if (hour >= 15 && hour < 19){
-                $scope.guide.greetingC = "下午好";
-                $scope.guide.greetingE = "Good afternoon";
-            }if (hour >= 11 && hour < 15){
-                $scope.guide.greetingC = "中午好";
-                $scope.guide.greetingE = "Good afternoon";
-            }if (hour >= 19 && hour < 22) {
-                $scope.guide.greetingC = "晚上好";
-                $scope.guide.greetingE = "Good evening";
-            }if (hour >= 22 && hour <= 24 || hour >= 0 && hour < 6) {
-                $scope.guide.greetingC = "深夜好";
-                $scope.guide.greetingE = "Good night";
-            }if (hour >= 6 && hour < 11) {
-                $scope.guide.greetingC = "早上好";
-                $scope.guide.greetingE = "Good morning";
-            }
-        }else{
-            $scope.guide.greetingC = $scope.guide.jieqi;
-            $scope.guide.greetingE="";
-        }
+        $scope.guide.date = $scope.guide.lunaryear+"/"+$scope.guide.month+"/"+$scope.guide.day+"日";
+        $scope.jieqi = $scope.guide.jieQiPassDay === 0?$scope.guide.jieqi:$scope.guide.nextJieQi;
+        $scope.days = $scope.guide.jieQiPassDay === 0?"":$scope.parseNumber($scope.guide.nextJieQiDay)+"日后";
+        $scope.jieqiG = $scope.guide.jieQiPassDay === 0?"":$scope.guide.jieqi+"已过";
     });
+
+    $scope.parseNumber = function (number) {
+        var sw = number/10;
+        var ys = number%10;
+        if(sw === 0)
+            return numberFormat[ys];
+        else if(sw === 1)
+            return "十" + (ys===0?"":numberFormat[ys-1]);
+        else
+            return numberFormat[sw-1]+"十"+numberFormat[ys-1];
+    };
 
     $http({
         method: 'POST',
@@ -46,7 +34,7 @@ app.controller('welcomeCtrl', function($scope, $location,$http) {
         data:{cfgIds:[1050]}
     }).success(function(data) {
         var img = data.attach.list[0].url;
-        $(".welcomePage").css("background-image","url("+img+")");
+        // $(".welcomePage_").css("background-image","url("+img+")");
     });
 
 });

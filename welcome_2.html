@@ -13,38 +13,26 @@
     </style>
 </head>
 <body ng-controller="welcomeCtrl" ng-cloak="">
-    <div class="welcomePage_">
-        <div class="date">
-            {{guide.date}}
+    <div class="welcomePage">
+        <div class="top">
+            <div class="part1">
+                <div></div>
+                <img src="images/cloud.png"/>
+                <span>生 活 百 味</span>
+                <span>Flavor of life</span>
+            </div>
+            <p class="part2">{{guide.verse}}</p>
         </div>
-        <div class="td1_1">
-            {{guide.suici[0]}}
-        </div>
-        <div class="td1_2">
-            五月十八<br/><br/>{{guide.suici[1]}}{{guide.suici[2]}}
-        </div>
-        <div class="td2_1">
-            五 月
-        </div>
-        <div class="td2_2">
-            <span style="position:absolute;top: 0;left: 0">{{days}}</span>
-            <span style="position:absolute;bottom: 0;left: 0">{{jieqi}}</span>
-        </div>
-        <div class="td3_1">
-            素 譜
-        </div>
-        <div class="td3_2">
-            {{jieqiG}}
-        </div>
-        <table><tr><td></td><td></td><td></td></tr></table>
-        <div class="jq">
-            節氣時令
-        </div>
-        <div class="content_1">
-            {{guide.content1}}
-        </div>
-        <div class="content_2">
-            {{guide.content2}}
+        <div class="bottom">
+            <div class="part1">
+                <img src="images/fish.png"/>
+                <p>{{guide.greetingC}}</p>
+                <p>{{guide.greetingE}}</p>
+            </div>
+            <div class="part2">
+                <p>{{guide.date}} {{guide.week}}</p>
+                <p>{{guide.gz}}</p>
+            </div>
         </div>
     </div>
     <!--<script type="text/javascript" src="lib/jquery-3.1.0.min.js"></script>-->
