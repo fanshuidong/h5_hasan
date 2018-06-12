@@ -20,10 +20,10 @@ app.controller('welcomeCtrl', function($scope, $location,$http) {
     });
 
     $scope.parseNumber = function (number) {
-        var sw = number/10;
+        var sw = parseInt(number/10);
         var ys = number%10;
         if(sw === 0)
-            return numberFormat[ys];
+            return numberFormat[ys-1];
         else if(sw === 1)
             return "十" + (ys===0?"":numberFormat[ys-1]);
         else
@@ -36,7 +36,7 @@ app.controller('welcomeCtrl', function($scope, $location,$http) {
         data:{cfgIds:[1050]}
     }).success(function(data) {
         var img = data.attach.list[0].url;
-        // $(".welcomePage_").css("background-image","url("+img+")");
+        $(".welcomePage_").css("background-image","url("+img+")");
     });
 
 });
