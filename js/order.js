@@ -44,18 +44,21 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
                 });
             }
         }
-    }
+    };
 
     // 下拉刷新
     $scope.doRefresh = function() {
         $scope.orders = [];
         $scope.page = 1;
+        var data = {page:$scope.page,pageSize:$scope.pageSize};
+        if($scope.state)
+            data.state = $scope.state;
         $timeout(function () {//和下拉动画配合时间
             $http({
                 method: 'POST',
                 url:host+"/hasan/order/list",
                 headers:{'token':$scope.token},
-                data:{page:$scope.page,pageSize:$scope.pageSize}
+                data:data
             }).success(function(data) {
                 console.log(data);
                 $scope.orders = data.attach.list;
@@ -73,12 +76,15 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
     $scope.loadMoreData = function() {
         $scope.hasInfinite = false;
         $scope.page++;
+        var data = {page:$scope.page,pageSize:$scope.pageSize};
+        if($scope.state)
+            data.state = $scope.state;
         $timeout(function () {//和下拉动画配合时间
         $http({
             method: 'POST',
             url:host+"/hasan/order/list",
             headers:{'token':$scope.token},
-            data:{page:$scope.page,pageSize:$scope.pageSize}
+            data:data
         }).success(function(data) {
             //本次请求有数据
             if (data.attach.list&&data.attach.list.length > 0) {
@@ -103,8 +109,12 @@ app.controller('orderCtrl', function($scope, $location,$http,$timeout) {
         $scope.page=1;
         $scope.topTip = false;
         var data = {page:$scope.page,pageSize:$scope.pageSize};
-        if(this.id!='ALL')
+        if(this.id!='ALL'){
             data.state = this.id;
+            $scope.state = this.id;
+        }else{
+            $scope.state = undefined;
+        }
         $http({
             method: 'POST',
             url:host+"/hasan/order/list",
