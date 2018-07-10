@@ -173,8 +173,8 @@ body {
 .welcomePage_ .td3_1{position:absolute;width: 2.33rem;height: 6.67rem;left: 16.2rem;top:7.6rem;font-size: 2.33rem;text-align:left;}
 .welcomePage_ .td3_2{position:absolute;width: 1.07rem;height: 5.67rem;left: 16.6rem;top:24.8rem;font-size: 1rem;text-align:left;}
 .welcomePage_ .jq{position:absolute;width: 5.3rem;height: 1.67rem;left: 10.2rem;top:32.13rem;font-size: 1.2rem;text-align:left;}
-.welcomePage_ .content_1{position:absolute;width: 13.56rem;height: 1.34rem;left: 6rem;top:35.27rem;font-size: 0.93rem;text-align:left;}
-.welcomePage_ .content_2{position:absolute;width: 10.76rem;height: 1.34rem;left: 7.4rem;top:37.27rem;font-size: 0.93rem;text-align:left;}
+.welcomePage_ .content_1{position:absolute;width: 13.56rem;height: 1.34rem;left: 6rem;top:35.27rem;font-size: 0.93rem;text-align:center;}
+.welcomePage_ .content_2{position:absolute;width: 10.76rem;height: 1.34rem;left: 7.4rem;top:37.27rem;font-size: 0.93rem;text-align:center;}
 
     /*关于我们*/
 .logo{margin-left: 9.93rem;margin-top: 2.4rem;height: 5rem;width: 5.26rem;}
